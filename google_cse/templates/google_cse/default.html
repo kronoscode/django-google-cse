@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %}Busqueda{% endblock %}
+
+{% block extra_js %}
+<link rel="stylesheet" href="http://www.google.com/cse/style/look/default.css" type="text/css" />
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript">
+    function parseQueryFromUrl () {
+        var queryParamName = "q";
+        var search = window.location.search.substr(1);
+        var parts = search.split('&');
+        for (var i = 0; i < parts.length; i++) {
+              var keyvaluepair = parts[i].split('=');
+              if (decodeURIComponent(keyvaluepair[0]) == queryParamName) {
+                return decodeURIComponent(keyvaluepair[1].replace(/\+/g, ' '));
+            }
+        }
+        return '';
+    }
+    google.load('search', '1', {language : 'es'});
+
+    google.setOnLoadCallback(function() {
+        var customSearchControl = new google.search.CustomSearchControl('{{ CX_CODE }}');
+        var options = new google.search.DrawOptions();
+        var queryFromUrl = parseQueryFromUrl();
+
+        customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+        options.enableSearchResultsOnly();
+        customSearchControl.draw('cse', options);
+
+        if (queryFromUrl) {
+          customSearchControl.execute(queryFromUrl);
+      }
+    }, true);
+</script>
+{% endblock %}
+
+{% block content %}
+<div>
+    Resultados de Búsqueda para: <span><b>{{ q }}</b></span><br>
+    <div id="cse">Loading</div>
+</div>
+{% endblock %}
