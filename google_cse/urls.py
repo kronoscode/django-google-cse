@@ -1,12 +1,6 @@
-"""URLs for the google_cse app."""
-# from django.conf.urls import patterns, url
+from django.conf.urls import patterns, url
+from .views import search
 
-# from . import views
-
-
-# urlpatterns = patterns(
-#     '',
-#     url(r'^$',
-#         views.YourView.as_view(),
-#         name='google_cse_default'),
-# )
+urlpatterns = patterns(
+    '', url(r'^$', search, name='search'),
+)

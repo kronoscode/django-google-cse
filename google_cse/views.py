@@ -1,8 +1,17 @@
-"""Views for the google_cse app."""
-# from django.views.generic import TemplateView
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.conf import settings
 
-# from . import models
 
+def search(request):
+    template = getattr(settings, 'CSE_TEMPLATE', 'google_cse/default.html')
+    cx_code = getattr(settings, 'CX_CODE', '')
 
-# class YourView(TemplateView):
-#    template_name = 'google_cse/default.html'
+    query = request.GET.get('q', '')
+    context = {
+        'CX_CODE': cx_code,
+        'q': query,
+    }
+
+    return render_to_response(template, context,
+                              context_instance=RequestContext(request))
