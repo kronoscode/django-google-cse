@@ -9,3 +9,9 @@ db.sqlite
 dist/
 docs/_build/
 local_settings.py
+*.html~
+*.pyc
+*.css~
+*.js~
+
+__pycache__/
