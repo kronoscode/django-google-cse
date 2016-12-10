@@ -1,6 +1,4 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 from .views import search
 
-urlpatterns = patterns(
-    '', url(r'^$', search, name='search'),
-)
+urlpatterns = [ url(r'^$', search, name='search'), ]
