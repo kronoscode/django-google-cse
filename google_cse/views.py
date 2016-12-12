@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
 from django.conf import settings
 
 
@@ -12,4 +12,4 @@ def search(request):
         'q': query,
     }
 
-    return render_to_response(template, context)
+    return render(request, template, context)
