@@ -4,3 +4,5 @@
 *.js~
 
 __pycache__/
+
+django_google_cse.egg-info
