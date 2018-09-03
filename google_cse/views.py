@@ -1,4 +1,5 @@
-from django.shortcuts import render_to_response
+from django.shortcuts import render
+from django.template.response import TemplateResponse
 from django.template import RequestContext
 from django.conf import settings
 
@@ -13,5 +14,4 @@ def search(request):
         'q': query,
     }
 
-    return render_to_response(template, context,
-                              context_instance=RequestContext(request))
+    return TemplateResponse(request, template, context)
