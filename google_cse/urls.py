@@ -1,8 +1,8 @@
-from django.conf.urls import url
+from django.urls import path
 from .views import search
 
 app_name = 'google_cse'
 
 urlpatterns = [
-    url(r'^$', search, name='search'),
+    path(r'^$', search, name='search'),
 ]
